@@ -16,7 +16,7 @@ const Restablecer = () => {
         try {
             const url = `${import.meta.env.VITE_BACKEND_URL}/recuperar-password/${token}`
             const respuesta = await axios.get(url)
-						setTokenBack(true)
+			setTokenBack(true)
             setMensaje({respuesta:respuesta.data.msg,tipo:true})
         } catch (error) {
             setMensaje({respuesta:error.response.data.msg,tipo:false})
