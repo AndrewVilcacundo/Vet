@@ -1,8 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import AuthContext from '../context/AuthProvider';
+import { useContext } from 'react';
+import { Forbidden } from '../paginas/Forbidden';
 
-export const PrivateRoute = ({ children }) => 
-{
-    const autenticado = localStorage.getItem('token')
-    
-    return (autenticado) ? children : <Navigate to='/login' />
+
+export default function PrivateRouteWithRole({ children }) {
+    const { auth } = useContext(AuthContext)
+
+    if ("paciente" === auth.rol) {
+        return <Forbidden/>
+    } else {
+        return children
+    }
 }
